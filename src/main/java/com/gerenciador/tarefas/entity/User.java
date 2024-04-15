@@ -1,12 +1,19 @@
-package entity;
+package com.gerenciador.tarefas.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Usuario implements Serializable {
+@Table(name = "usuarios")
+@Data
+@Getter
+@Setter
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,12 +24,13 @@ public class Usuario implements Serializable {
     @Column(unique = true, length = 50)
     private String username;
 
-    @Column(length = 50)
+    @Column(length = 150)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"),
-    uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "role_id"}))
+            inverseJoinColumns = @JoinColumn(name = "role_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id" , "role_id"}))
     private List<Role> roles;
+
 }
