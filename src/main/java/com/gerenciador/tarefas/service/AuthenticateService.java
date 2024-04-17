@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication;
 import java.util.Date;
 
 public class AuthenticateService {
-    static public void addJWTToken(HttpServletResponse response, String username, String password) {
+    static public void addJWTToken(HttpServletResponse response, String username) {
         String jwtToken = Jwts.builder()
                 .setSubject(username)
                 .setExpiration(new Date(System.currentTimeMillis() + 3600000))
