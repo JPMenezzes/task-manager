@@ -26,7 +26,7 @@ public class AuthenticatedUserService implements UserDetailsService {
 
         List<SimpleGrantedAuthority> roles = user.getRoles()
                 .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getNome()))
+                .map(role -> new SimpleGrantedAuthority(role.getNome().toString()))
                 .collect(Collectors.toList());
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), roles);
