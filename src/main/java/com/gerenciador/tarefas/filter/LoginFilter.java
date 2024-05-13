@@ -42,6 +42,6 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
                                             HttpServletResponse httpServletResponse,
                                             Authentication authentication,
                                             FilterChain filterChain) throws IOException, ServletException {
-        AuthenticateService.addJWTToken(httpServletResponse, authentication.getName());
+        AuthenticateService.addJWTToken(httpServletResponse, authentication);
     }
 }
